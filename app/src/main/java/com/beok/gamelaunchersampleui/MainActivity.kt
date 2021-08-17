@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -88,6 +89,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .weight(5F)
+                            .clickable {  }
                     ) {
                         Text(text = "최근 게임")
                         Icon(
@@ -101,6 +103,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .weight(1F)
+                            .clickable {  }
                     )
                     Icon(
                         imageVector =  Icons.Default.Notifications,
@@ -108,6 +111,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .weight(1F)
+                            .clickable {  }
                     )
                 }
             }
