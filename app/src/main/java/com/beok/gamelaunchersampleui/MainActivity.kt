@@ -80,41 +80,46 @@ class MainActivity : ComponentActivity() {
                 )
             },
             content = {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(5F)
-                            .clickable {  }
-                    ) {
-                        Text(text = "최근 게임")
-                        Icon(
-                            imageVector = Icons.Default.KeyboardArrowRight,
-                            contentDescription = null
-                        )
-                    }
-                    Icon(
-                        imageVector =  Icons.Default.Person,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(1F)
-                            .clickable {  }
-                    )
-                    Icon(
-                        imageVector =  Icons.Default.Notifications,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(1F)
-                            .clickable {  }
-                    )
-                }
+                header()
             }
         )
+    }
+
+    @Composable
+    private fun header() {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(5F)
+                    .clickable { }
+            ) {
+                Text(text = "최근 게임")
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null
+                )
+            }
+            Icon(
+                imageVector = Icons.Default.Person,
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1F)
+                    .clickable { }
+            )
+            Icon(
+                imageVector = Icons.Default.Notifications,
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1F)
+                    .clickable { }
+            )
+        }
     }
 }
