@@ -80,13 +80,13 @@ class MainActivity : ComponentActivity() {
                 )
             },
             content = {
-                header()
+                Header()
             }
         )
     }
 
     @Composable
-    private fun header() {
+    private fun Header() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
