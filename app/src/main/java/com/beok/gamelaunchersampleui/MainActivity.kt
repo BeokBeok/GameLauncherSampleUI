@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
@@ -34,16 +33,18 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.rememberImagePainter
 import com.beok.gamelaunchersampleui.ui.theme.GameLauncherSampleUITheme
 
+@ExperimentalComposeUiApi
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +75,59 @@ class MainActivity : ComponentActivity() {
         ) {
             RecentGame()
             Advertising()
+            NowHotGame()
+        }
+    }
+
+    @Composable
+    private fun NowHotGame() {
+        Row(modifier = Modifier
+            .padding(top = 16.dp)
+            .padding(horizontal = 16.dp)
+            .fillMaxWidth()
+            .clickable { }
+        ) {
+            Text(text = "지금 뜨는 게임")
+            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
+        }
+        LazyRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+                .padding(vertical = 12.dp)
+                .padding(start = 16.dp),
+            contentPadding = PaddingValues(end = 0.dp)
+        ) {
+            repeat(5) {
+                item {
+                    Card(
+                        modifier = Modifier
+                            .width(350.dp)
+                            .fillMaxHeight()
+                            .padding(end = 12.dp),
+                        shape = RoundedCornerShape(size = 20.dp),
+                        elevation = 0.dp,
+                        backgroundColor = Color.Red
+                    ) {
+                        ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+                            val (thumbnail) = createRefs()
+                            Image(
+                                painter = rememberImagePainter(data = "https://frvr.com/i/g/golddigger.jpg"),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .constrainAs(thumbnail) {
+                                        top.linkTo(parent.top)
+                                        start.linkTo(parent.start)
+                                        end.linkTo(parent.end)
+                                    }
+                                    .fillMaxWidth()
+                                    .height(200.dp),
+                                contentScale = ContentScale.FillBounds
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -87,7 +141,7 @@ class MainActivity : ComponentActivity() {
         Row(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
-                .clickable {  }
+                .clickable { }
                 .padding(vertical = 4.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
