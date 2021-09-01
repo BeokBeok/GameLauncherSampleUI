@@ -52,25 +52,40 @@ class MainActivity : ComponentActivity() {
     fun MainContent() {
         Scaffold(
             topBar = {
-                TopAppBar(
-                    title = { Text(text = "게임 런처") },
-                    backgroundColor = Color.Transparent,
-                    navigationIcon = {
-                        IconButton(onClick = { }) {
-                            Icon(
-                                imageVector = Icons.Default.Menu,
-                                contentDescription = null
-                            )
-                        }
-                    }
-                )
+                TopAppBar()
             },
             content = {
-                Column(
-                    modifier = Modifier.verticalScroll(rememberScrollState())
-                ) {
-                    RecentGameHeader()
-                    RecentGameContent()
+                Content()
+            }
+        )
+    }
+
+    @Composable
+    private fun Content() {
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState())
+        ) {
+            RecentGame()
+        }
+    }
+
+    @Composable
+    private fun RecentGame() {
+        RecentGameHeader()
+        RecentGameContent()
+    }
+
+    @Composable
+    private fun TopAppBar() {
+        TopAppBar(
+            title = { Text(text = "게임 런처") },
+            backgroundColor = Color.Transparent,
+            navigationIcon = {
+                IconButton(onClick = { }) {
+                    Icon(
+                        imageVector = Icons.Default.Menu,
+                        contentDescription = null
+                    )
                 }
             }
         )
