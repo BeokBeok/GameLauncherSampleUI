@@ -81,15 +81,14 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun NowHotGame() {
-        Row(modifier = Modifier
-            .padding(top = 16.dp)
-            .padding(horizontal = 16.dp)
-            .fillMaxWidth()
-            .clickable { }
-        ) {
-            Text(text = "지금 뜨는 게임")
-            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
-        }
+        MoreText(
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+                .clickable { },
+            text = "지금 뜨는 게임"
+        )
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth()
@@ -246,18 +245,13 @@ class MainActivity : ComponentActivity() {
                 .fillMaxWidth()
                 .padding(start = 16.dp, end = 16.dp, top = 16.dp)
         ) {
-            Row(
+            MoreText(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(5F)
-                    .clickable { }
-            ) {
-                Text(text = "최근 게임")
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowRight,
-                    contentDescription = null
-                )
-            }
+                    .clickable { },
+                text = "최근 게임"
+            )
             Icon(
                 imageVector = Icons.Default.Person,
                 contentDescription = null,
@@ -273,6 +267,17 @@ class MainActivity : ComponentActivity() {
                     .fillMaxWidth()
                     .weight(1F)
                     .clickable { }
+            )
+        }
+    }
+
+    @Composable
+    private fun MoreText(modifier: Modifier = Modifier, text: String) {
+        Row(modifier = modifier) {
+            Text(text = text)
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowRight,
+                contentDescription = null
             )
         }
     }
