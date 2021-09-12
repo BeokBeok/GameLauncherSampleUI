@@ -20,15 +20,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
+import androidx.compose.material.Colors
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
@@ -38,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -109,7 +113,7 @@ class MainActivity : ComponentActivity() {
                         backgroundColor = Color.Red
                     ) {
                         ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-                            val (thumbnail) = createRefs()
+                            val (thumbnail, more, icon, title, subtitle) = createRefs()
                             Image(
                                 painter = rememberImagePainter(data = "https://frvr.com/i/g/golddigger.jpg"),
                                 contentDescription = null,
@@ -122,6 +126,60 @@ class MainActivity : ComponentActivity() {
                                     .fillMaxWidth()
                                     .height(200.dp),
                                 contentScale = ContentScale.FillBounds
+                            )
+                            Image(
+                                imageVector = Icons.Default.MoreVert,
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .padding(top = 8.dp, end = 8.dp)
+                                    .constrainAs(more) {
+                                        top.linkTo(parent.top)
+                                        end.linkTo(parent.end)
+                                    }
+                                    .clickable { }
+                            )
+                            Card(
+                                modifier = Modifier
+                                    .padding(start = 20.dp)
+                                    .width(40.dp)
+                                    .height(40.dp)
+                                    .constrainAs(icon) {
+                                        start.linkTo(parent.start)
+                                        top.linkTo(thumbnail.bottom)
+                                        bottom.linkTo(parent.bottom)
+                                    },
+                                shape = RoundedCornerShape(size = 4.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_tmp),
+                                    contentDescription = null,
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentScale = ContentScale.FillBounds
+                                )
+                            }
+                            Text(
+                                text = "Gold Digger FRVR",
+                                modifier = Modifier
+                                    .padding(start = 20.dp)
+                                    .fillMaxWidth()
+                                    .constrainAs(title) {
+                                        start.linkTo(icon.end)
+                                        top.linkTo(icon.top)
+                                    },
+                                color = Color.White,
+                                style = MaterialTheme.typography.body1
+                            )
+                            Text(
+                                text = "SSS",
+                                modifier = Modifier
+                                    .padding(start = 20.dp)
+                                    .fillMaxWidth()
+                                    .constrainAs(subtitle) {
+                                        start.linkTo(icon.end)
+                                        bottom.linkTo(icon.bottom)
+                                    },
+                                color = Color.White,
+                                style = MaterialTheme.typography.body2
                             )
                         }
                     }
