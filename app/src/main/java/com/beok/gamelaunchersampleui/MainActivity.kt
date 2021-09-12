@@ -20,7 +20,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
-import androidx.compose.material.Colors
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -40,6 +39,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -80,6 +80,56 @@ class MainActivity : ComponentActivity() {
             RecentGame()
             Advertising()
             NowHotGame()
+            InstantGameCategory()
+        }
+    }
+
+    @Composable
+    private fun InstantGameCategory() {
+        Text(
+            text = "인스턴트 게임 카테고리",
+            modifier = Modifier.padding(start = 16.dp)
+        )
+        repeat(2) {
+            Row(
+                modifier = Modifier
+                    .padding(top = 12.dp)
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth()
+                    .height(100.dp)
+            ) {
+                GameCategory(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(4.dp),
+                    painterResource = painterResource(id = R.drawable.ic_tmp)
+                )
+                GameCategory(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(4.dp),
+                    painterResource = painterResource(id = R.drawable.ic_tmp)
+                )
+            }
+        }
+    }
+
+    @Composable
+    private fun GameCategory(
+        modifier: Modifier = Modifier,
+        painterResource: Painter
+    ) {
+        Card(
+            modifier = modifier,
+            shape = RoundedCornerShape(4.dp),
+            border = BorderStroke(width = 1.dp, color = Color.Black)
+        ) {
+            Image(
+                painter = painterResource,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.FillBounds
+            )
         }
     }
 
